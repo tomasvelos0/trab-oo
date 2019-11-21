@@ -5,12 +5,8 @@ public class Matriculado {
 	String nome;
 	String email;
 	String datainicio;
+	String categoria;
 	int idade;
-
-
-	boolean professor() {
-		return false;
-	}
 
 
 	public void setNome(String newNome) {

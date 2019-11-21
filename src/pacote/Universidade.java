@@ -55,8 +55,6 @@ public class Universidade {
 		m.setMatricula(newMatricula);
 	}
 	
-	void learn
-	
 	int getIDMatriculadoStr(String matricula) {
 		// melhor por como matricula, pois pde ter dois nomes igual
 		for(int i = 0; i<matriculado.size();i++) {
@@ -70,7 +68,7 @@ public class Universidade {
 	
 	void infUniver() {
 		for(int i = 0; i<campus.size(); i++) {
-			System.out.println("[" + i + "]" + campus.get(i).nome);
+			System.out.println("Id: [" + i + "] Campus: " + campus.get(i).nome);
 		}
 	}
 	

@@ -6,9 +6,8 @@ public class Aluno extends Matriculado {
 	public Aluno(String nome, String matricula) {
 		this.nome = nome;
 		this.matricula = matricula;
+		this.categoria = "Aluno";
 	}
 
-	boolean professor() {
-		return false;
-	}
+
 }
