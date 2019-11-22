@@ -1,4 +1,4 @@
-package engine;
+package pacote;
 
 public class Aluno extends Matriculado {
 	String curso;

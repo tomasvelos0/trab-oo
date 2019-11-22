@@ -1,4 +1,4 @@
-package engine;
+package pacote;
 
 public class Professor extends Matriculado {
 	String departamento;
