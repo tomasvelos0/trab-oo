@@ -9,5 +9,15 @@ public class Aluno extends Matriculado {
 		this.categoria = "Aluno";
 	}
 
+	//Get e Set
+	
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
 
 }

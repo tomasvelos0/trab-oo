@@ -9,5 +9,15 @@ public class Professor extends Matriculado {
 		this.categoria = "Professor";
 	}
 
+	//Get e Set
+	
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
 	
 }
