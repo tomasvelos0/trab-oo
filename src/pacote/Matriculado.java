@@ -8,7 +8,10 @@ public class Matriculado {
 	String categoria;
 	int idade;
 
-	//Get e Set
+	
+	
+	/*
+	 * //Get e Set
 
 	public void setNome(String newNome) {
 		this.nome = newNome;
@@ -57,4 +60,5 @@ public class Matriculado {
 	public String getNome() {
 		return nome;
 	}
+	*/
 }
