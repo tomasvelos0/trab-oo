@@ -8,6 +8,7 @@ public class Turma {
 	int horario;
 	int dia;
 	ArrayList<Ocupacao> ocupacao;
+	Disciplina disciplina;
 	
 	public Turma(String nome) {
 		this.nome = nome;
