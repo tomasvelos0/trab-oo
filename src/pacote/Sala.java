@@ -5,6 +5,8 @@ public class Sala {
 	String nome;
 	int capacidade;
 	ArrayList<Ocupacao> ocupacao;
+	//Tipo de aula que ocorrera na sala, caso nao informado lança exceção
+	private String tipo_aula; 
 	
 	public Sala(String nome) {
 		this.nome = nome;
@@ -25,6 +27,14 @@ public class Sala {
 
 	public void setNewCapacidade(int newCapacidade) {
 		this.capacidade = newCapacidade;
+	}
+	
+	public String getTipo_aula() {
+		return tipo_aula;
+	}
+
+	public void setTipo_aula(String tipo_aula) {
+		this.tipo_aula = tipo_aula;
 	}
 	
 }
