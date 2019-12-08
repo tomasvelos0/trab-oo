@@ -15,6 +15,8 @@ public class Main {
 		Predio predio;
 		Disciplina disciplina;
 		Matriculado matriculado;
+		Turma turma;
+		Sala sala;
 		int menu = 0;
 		if (r==2) {
 			System.out.println("Qual o nome da universidade? ");
@@ -93,7 +95,7 @@ public class Main {
 		}
 
 		while(true) {
-			System.out.println("\n\n\n ----------------------------------------------------------- ");
+			System.out.println("\n\n\n----------------------------------------------------------- ");
 			System.out.println("\n\nInforme o número da operação que deseja realizar: \n");
 			System.out.println("(1)  Mapa da universidade: ");
 			System.out.println("(2)  Adicionar novo campus");
@@ -109,6 +111,12 @@ public class Main {
 			System.out.println("(12) Adicionar nova disciplina");
 			System.out.println("(13) Remover disciplina");
 			System.out.println("(14) Editar disciplina");
+			System.out.println("(15) Adicionar nova turma");
+			System.out.println("(16) Remover turma");
+			System.out.println("(17) Editar turma");
+			System.out.println("(18) Adicionar nova sala");
+			System.out.println("(19) Remover sala");
+			System.out.println("(20) Editar sala");
 			System.out.println("(99) Para sair.");
 			menu = in.nextInt();
 			
@@ -226,7 +234,11 @@ public class Main {
 						System.out.println("Digite o nome do prédio a ser removido.");
 						campus = uni.campus.get(uni.getIDCampusStr(temp));
 						temp = in.nextLine();
-						campus.removePredio(campus.getIDPredioStr(temp));
+						if(campus.getIDPredioStr(temp)>-1) {
+							campus.removePredio(campus.getIDPredioStr(temp));
+						} else {
+							System.out.println("Prédio não encontrado!");
+						}
 					} else {
 						System.out.println("Campus não encontrado!");
 					}
@@ -280,7 +292,11 @@ public class Main {
 						System.out.println("Digite o nome da disciplina a ser removida.");
 						campus = uni.campus.get(uni.getIDCampusStr(temp));
 						temp = in.nextLine();
-						campus.disciplinas.remove(campus.getIDDisciplinaStr(temp));
+						if(campus.getIDDisciplinaStr(temp)>-1) {
+							campus.disciplinas.remove(campus.getIDDisciplinaStr(temp));
+						} else {
+							System.out.println("Disciplina não encontrada!");
+						}
 					} else {
 						System.out.println("Campus não encontrado!");
 					}
@@ -306,6 +322,163 @@ public class Main {
 							disciplina.setCredito(temp3);
 						} else {
 							System.out.println("Disciplina não encontrada!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 15:
+					System.out.println("Selecionado: (15) Adicionar turma");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a turma deve ser adicionada.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina ao qual ao qual a turma deve ser adicionada.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDDisciplinaStr(temp)>-1) {
+							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
+							System.out.println("Digite o nome da turma a ser adicionada");
+							temp = in.nextLine();
+							disciplina.addTurma(temp);
+						} else {
+							System.out.println("Disciplina não encontrada!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 16:
+					System.out.println("Selecionado: (16) Remover turma");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a turma deve ser removida.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina ao qual ao qual a turma deve ser removida.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDDisciplinaStr(temp)>-1) {
+							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
+							System.out.println("Digite o nome da turma a ser removida.");
+							temp = in.nextLine();
+							if(disciplina.getIDTurmaStr(temp)>-1) {
+								disciplina.turmas.remove(disciplina.getIDTurmaStr(temp));
+							} else {
+								System.out.println("Turma não encontrada!");
+							}
+						} else {
+							System.out.println("Disciplina não encontrada!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 17:
+					System.out.println("Selecionado: (17) Editar turma");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a turma pertence.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina ao qual ao qual a turma pertence.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDDisciplinaStr(temp)>-1) {
+							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
+							System.out.println("Digite o nome da turma a ser editada.");
+							temp = in.nextLine();
+							if(disciplina.getIDTurmaStr(temp)>-1) {
+								turma = disciplina.turmas.get(disciplina.getIDTurmaStr(temp));
+								System.out.println("Digite o novo nome da turma.");
+								temp = in.nextLine();
+								turma.setNome(temp);
+							} else {
+								System.out.println("Turma não encontrada!");
+							}
+						} else {
+							System.out.println("Disciplina não encontrada!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 18:
+					System.out.println("Selecionado: (18) Adicionar nova sala");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a sala deve ser adicionada a sala.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						System.out.println("Digite o nome do prédio ao qual deve ser editadoadicionado a sala.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDPredioStr(temp)>-1) {
+							predio = campus.predios.get(campus.getIDPredioStr(temp));
+							System.out.println("Digite o nome da sala a ser adicionada.");
+							temp = in.nextLine();
+							predio.addSala(temp);
+						} else {
+							System.out.println("Prédio não encontrado!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 19:
+					System.out.println("Selecionado: (19) Remover nova sala");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a sala deve ser adicionada.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						System.out.println("Digite o nome do prédio ao qual a sala deve ser adicionado.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDPredioStr(temp)>-1) {
+							predio = campus.predios.get(campus.getIDPredioStr(temp));
+							System.out.println("Digite o nome da sala a ser removida.");
+							temp = in.nextLine();
+							if(predio.getIDSalaStr(temp)>-1) {
+								predio.salas.remove(predio.getIDSalaStr(temp));
+							} else {
+								System.out.println("Sala não encontrado!");
+							}
+						} else {
+							System.out.println("Prédio não encontrado!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 20:
+					System.out.println("Selecionado: (20) Editar nova sala");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a sala deve ser editada.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						System.out.println("Digite o nome do prédio ao qual a sala deve ser editada.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDPredioStr(temp)>-1) {
+							predio = campus.predios.get(campus.getIDPredioStr(temp));
+							System.out.println("Digite o nome da sala a ser editada.");
+							temp = in.nextLine();
+							if(predio.getIDSalaStr(temp)>-1) {
+								sala = predio.salas.get(predio.getIDSalaStr(temp));
+								System.out.println("Digite o novo nome da sala.");
+								temp = in.nextLine();
+								sala.setNome(temp);
+							} else {
+								System.out.println("Sala não encontrado!");
+							}
+						} else {
+							System.out.println("Prédio não encontrado!");
 						}
 					} else {
 						System.out.println("Campus não encontrado!");
