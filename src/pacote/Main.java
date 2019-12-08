@@ -93,16 +93,20 @@ public class Main {
 		}
 
 		while(true) {
+			System.out.println("\n\n\n ----------------------------------------------------------- ");
 			System.out.println("\n\nInforme o número da operação que deseja realizar: \n");
-			System.out.println("(1) Mapa da universidade: ");
-			System.out.println("(2) Adicionar novo campus");
-			System.out.println("(3) Remover Campus");
-			System.out.println("(4) Editar Campus");
-			System.out.println("(5) Adicionar Alunos");
-			System.out.println("(6) Adicionar Professor");
-			System.out.println("(7) Editar matriculado");
-			System.out.println("(8) Remover matriculado");
-			System.out.println("(100) Para sair.");
+			System.out.println("(1)  Mapa da universidade: ");
+			System.out.println("(2)  Adicionar novo campus");
+			System.out.println("(3)  Remover Campus");
+			System.out.println("(4)  Editar Campus");
+			System.out.println("(5)  Adicionar Alunos");
+			System.out.println("(6)  Adicionar Professor");
+			System.out.println("(7)  Editar matriculado");
+			System.out.println("(8)  Remover matriculado");
+			System.out.println("(9)  Adicionar novo prédio");
+			System.out.println("(10) Remover prédio");
+			System.out.println("(11) Editar prédio");
+			System.out.println("(99) Para sair.");
 			menu = in.nextInt();
 			
 			switch(menu) {
@@ -195,7 +199,59 @@ public class Main {
 						System.out.println("Matricula não encontrada.");
 					break;
 					
-				case 100:
+				case 9:
+					System.out.println("Selecionado: (9) Adicionar Prédio");
+					in.nextLine();
+					System.out.println("Digite o campus em que se deve adicionar o prédio.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome do prédio a ser adicionado.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						campus.addPredio(temp);
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 10:
+					System.out.println("Selecionado: (10) Remover Prédio");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual o prédio pertence.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome do prédio a ser removido.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						campus.removePredio(campus.getIDPredioStr(temp));
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 11:
+					System.out.println("Selecionado: (11) Editar Prédio");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual o prédio pertence.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome do prédio a ser editado.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDPredioStr(temp)>-1) {
+							predio = campus.predios.get(campus.getIDPredioStr(temp));
+							System.out.println("Digite o novo nome do prédio.");
+							temp = in.nextLine();
+							predio.setNome(temp);
+						} else {
+							System.out.println("Prédio não encontrado");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 99:
 					System.out.println("Programa Terminado!");
 					System.exit(1);
 					break;

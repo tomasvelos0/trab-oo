@@ -28,7 +28,7 @@ public class Universidade {
 	int getIDCampusStr(String nome) {
 		for(int i = 0; i<campus.size();i++) {
 			Campus c = campus.get(i);
-			if(c.nome.equalsIgnoreCase(nome))
+			if(c.nome.equals(nome))
 				return i;
 		}
 		return -1;
@@ -59,7 +59,7 @@ public class Universidade {
 		// melhor por como matricula, pois pde ter dois nomes igual
 		for(int i = 0; i<matriculado.size();i++) {
 			Matriculado m = matriculado.get(i);
-			if(m.matricula.equalsIgnoreCase(matricula))
+			if(m.matricula.equals(matricula))
 				return i;
 		}
 		return -1;
