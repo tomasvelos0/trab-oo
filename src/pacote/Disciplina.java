@@ -1,5 +1,7 @@
 package pacote;
 import java.util.ArrayList;
+import java.util.Scanner;
+import exception.*;
 
 public class Disciplina {
 	String nome;
@@ -13,6 +15,66 @@ public class Disciplina {
 
 	void addTurma(String nome) {
 		turmas.add(new Turma(nome));
+	}
+	
+	void addTurma(String nome, int qtdAlunos, int horario, int dia, String professor, String disciplina) {
+		turmas.add(new Turma(nome, qtdAlunos, horario, dia, professor, disciplina));
+	}
+	
+	void cadastrarTurma() {
+		boolean dados_completos = false;
+		String nome = "";
+		int qtdAlunos = 0;
+		int horario = 0;
+		int dia = 0;
+		String professor = "";
+		String disciplina = "";
+		
+		while(dados_completos == false) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.println("Para cadastrar uma nova turma, informe:");
+				
+				System.out.println("1 - O nome:");
+				nome = input.next();
+				
+				System.out.println("2 - A quantidade de alunos:");
+				qtdAlunos = input.nextInt();
+				
+				System.out.println("3 - O horario:");
+				horario = input.nextInt();
+				
+				System.out.println("4 - O dia:");
+				dia = input.nextInt();
+				input.nextLine();
+				
+				System.out.println("5 - O professor:");
+				professor = input.nextLine();
+				
+				System.out.println("6 - A disciplina:");
+				disciplina = input.nextLine();
+				
+				if (professor.length() == 0) {
+					throw new ProfessorNaoAtribuidoException();
+				
+				} else if(disciplina.length() == 0) {
+					throw new DisciplinaNaoInformadaException();
+				
+				} else {
+					dados_completos = true;
+					break;
+				}
+			} catch (ProfessorNaoAtribuidoException e) {
+				System.out.println(e.getInfo());
+			
+			} catch (DisciplinaNaoInformadaException e) {
+				System.out.println(e.getInfo());
+			}
+		}
+		if(dados_completos) {
+			turmas.add(new Turma(nome, qtdAlunos, horario, dia, professor, disciplina));
+			System.out.println("Turma cadastrada com sucesso!");
+		}
 	}
 	
 	void removeTurma(int id) {

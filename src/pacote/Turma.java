@@ -8,12 +8,21 @@ public class Turma {
 	int horario;
 	int dia;
 	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
-	ArrayList<Professor> professores = new ArrayList<Professor>();
-	Disciplina disciplina;
+	String professor;
+	String disciplina;
 	
 	
 	public Turma(String nome) {
 		this.nome = nome;
+	}
+	
+	public Turma(String nome, int qtdAlunos, int horario, int dia, String professor, String disciplina) {
+		this.nome = nome;
+		this.qtdAlunos = qtdAlunos;
+		this.horario = horario;
+		this.dia = dia;
+		this.professor = professor;
+		this.disciplina = disciplina;
 	}
 
 	void deallocate(Sala sala) {

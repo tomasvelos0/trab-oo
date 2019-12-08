@@ -1,6 +1,7 @@
 package pacote;
 
 import java.util.Scanner;
+import exception.*;
 
 public class Main {
 
@@ -91,10 +92,12 @@ public class Main {
 			disciplina.addTurma("D");
 			uni.infUniver();
 			System.out.println("Populado!");
+			
+			
 		} else {
 			uni = new Universidade("UnB");
 		}
-
+		
 		while(true) {
 			System.out.println("\n\n\n----------------------------------------------------------- ");
 			System.out.println("\n\nInforme o número da operação que deseja realizar: \n");

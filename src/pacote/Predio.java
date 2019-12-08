@@ -1,6 +1,8 @@
 package pacote;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import exception.*;
 
 public class Predio {
 	String nome;
@@ -17,6 +19,48 @@ public class Predio {
 	
 	void addSala(String nome, int capacidade) {
 		salas.add(new Sala(nome,capacidade));
+	}
+	
+	void addSala(String nome, int capacidade, String tipo_aula) {
+		salas.add(new Sala(nome, capacidade, tipo_aula));
+		
+	}
+	
+	void cadastrarSala() {
+		boolean dados_completos = false;
+		String nome = ""; 
+		String tipo_aula = "";
+		int capacidade = 0;
+		
+		while(dados_completos == false) {
+			try {
+				Scanner input = new Scanner(System.in);
+				System.out.println("Para cadastrar uma nova sala informe:");
+				
+				System.out.println("1 - O nome:");
+				nome = input.nextLine();
+				
+				System.out.println("2 - A capacidade:");
+				capacidade = input.nextInt();
+				input.nextLine();
+				System.out.println("3 - O tipo de aula:");
+				tipo_aula = input.nextLine();
+				
+				if (tipo_aula.length() == 0) {
+					throw new TipoDeAulaNaoAtribuidoException();
+				} else {
+					dados_completos = true;
+					break;
+				}
+				
+			} catch (TipoDeAulaNaoAtribuidoException e) {
+				System.out.println(e.getInfo());
+			}
+		}
+		if(dados_completos) {
+			this.addSala(nome, capacidade, tipo_aula);
+			System.out.println("Sala cadastrada com sucesso!"); 
+		}
 	}
 
 	void removeSala(int id) {
