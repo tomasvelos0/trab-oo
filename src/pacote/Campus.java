@@ -75,6 +75,19 @@ public class Campus {
 	}
 	
 	void cleanSalas() {
+		/* Desalocando as referências para salas nas ocupações de todas 
+		 * as turmas. */
+		for (Disciplina d : disciplinas) {
+			for (Turma t : d.turmas) {
+				for (Ocupacao o : t.ocupacao) {
+					o.destroiSala();
+				}
+			}
+		}
+		//Removendo todas as salas de todos os prédios
+		for (Predio p : predios) {
+			p.salas.clear();
+		}
 		
 	}
 	

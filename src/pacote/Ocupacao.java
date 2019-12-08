@@ -7,6 +7,13 @@ public class Ocupacao {
 	private Sala sala;
 	private Turma turma;
 	
+	public void destroiSala() {
+		this.sala = null;
+	}
+	public void destroiTurma() {
+		this.turma = null;
+	}
+	
 	//Get e Set
 	
 	public int getDia() {
