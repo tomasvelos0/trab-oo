@@ -7,8 +7,8 @@ public class Turma {
 	int qtdAlunos;
 	int horario;
 	int dia;
-	ArrayList<Ocupacao> ocupacao;
-	ArrayList<Professor> professores;
+	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
+	ArrayList<Professor> professores = new ArrayList<Professor>();
 	Disciplina disciplina;
 	
 	

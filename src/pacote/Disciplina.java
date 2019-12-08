@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Disciplina {
 	String nome;
 	int credito;
-	ArrayList<Turma> turmas;
+	ArrayList<Turma> turmas = new ArrayList<Turma>();
 	
 	public Disciplina(String nome,int credito) {
 		this.nome = nome;

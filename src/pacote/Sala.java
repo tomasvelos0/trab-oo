@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Sala {
 	String nome;
 	int capacidade;
-	ArrayList<Ocupacao> ocupacao;
+	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
 	//Tipo de aula que ocorrera na sala, caso nao informado lança exceção
 	private String tipo_aula; 
 	

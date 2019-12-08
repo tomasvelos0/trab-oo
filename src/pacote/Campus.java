@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Campus {
 	String nome;
-	ArrayList<Predio> predios;
-	ArrayList<Disciplina> disciplinas;
+	ArrayList<Predio> predios = new ArrayList<Predio>();
+	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
 	public Campus(String nome) {
 		this.nome = nome;
@@ -56,9 +56,22 @@ public class Campus {
 		return -1;
 	}
 	
-	// apagar todas as turmas?
+	// Apaga todas as Turmas (e suas Ocupações) de todas as Disciplinas do 
+	//campus.
 	void cleanTurmas() {
-		
+		//Desalocando as ocupações nas Salas
+		for(Predio p : predios) {
+			for(Sala s : p.salas) {
+				s.ocupacao.clear();
+			}
+		}
+		//Desalocando as ocupações em turmas, e removendo as turmas.
+		for(Disciplina d : disciplinas) {
+			for(Turma t : d.turmas) {
+				t.ocupacao.clear();
+			}
+			d.turmas.clear();
+		}
 	}
 	
 	void cleanSalas() {
