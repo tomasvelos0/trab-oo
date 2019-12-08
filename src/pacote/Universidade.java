@@ -67,9 +67,16 @@ public class Universidade {
 	}
 	
 	void infUniver() {
+		System.out.println(this.nome + ":");
+		for(int i = 0; i<matriculado.size(); i++) {
+			if(matriculado.get(i).isProfessor()) 
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Professor");
+			else
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Aluno");
+		}
 		for(int i = 0; i<campus.size(); i++) {
-			System.out.println("Id: [" + i + "] Campus: " + campus.get(i).nome);
+			System.out.println("	Campus["+ i +"]: " + campus.get(i).nome);
+			campus.get(i).infCampus();
 		}
 	}
-	
 }
