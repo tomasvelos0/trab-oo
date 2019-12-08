@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Deseja criar uma universidade?: ");
 		System.out.println("(1)Sim\n(2)Não");
@@ -70,8 +71,6 @@ public class Main {
 					uni.infUniver();
 				}
 			}
-		}
-		
-		
+		}		
 	}
 }

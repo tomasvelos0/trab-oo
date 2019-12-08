@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Campus {
 	String nome;
-	ArrayList<Predio> predios;
-	ArrayList<Disciplina> disciplinas;
+	ArrayList<Predio> predios = new ArrayList<Predio>();
+	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
 	public Campus(String nome) {
 		this.nome = nome;
@@ -56,12 +56,38 @@ public class Campus {
 		return -1;
 	}
 	
-	// apagar todas as turmas?
+	// Apaga todas as Turmas (e suas Ocupações) de todas as Disciplinas do 
+	//campus.
 	void cleanTurmas() {
-		
+		//Desalocando as ocupações nas Salas
+		for(Predio p : predios) {
+			for(Sala s : p.salas) {
+				s.ocupacao.clear();
+			}
+		}
+		//Desalocando as ocupações em turmas, e removendo as turmas.
+		for(Disciplina d : disciplinas) {
+			for(Turma t : d.turmas) {
+				t.ocupacao.clear();
+			}
+			d.turmas.clear();
+		}
 	}
 	
 	void cleanSalas() {
+		/* Desalocando as referências para salas nas ocupações de todas 
+		 * as turmas. */
+		for (Disciplina d : disciplinas) {
+			for (Turma t : d.turmas) {
+				for (Ocupacao o : t.ocupacao) {
+					o.destroiSala();
+				}
+			}
+		}
+		//Removendo todas as salas de todos os prédios
+		for (Predio p : predios) {
+			p.salas.clear();
+		}
 		
 	}
 	
@@ -69,8 +95,27 @@ public class Campus {
 		
 	}
 	
+	/*Percorre todas as salas em busca de horario e capacidade compativeis com
+	 * a turma. Entao aloca uma ocupacao conectando sala e turma.*/
 	void allocateTurma(Turma turma) {
-		
+		Ocupacao ocupacao;
+		boolean salaEncontrada = false;
+		for (Predio p : predios) {
+			for(Sala s : p.salas) {
+				if (s.capacidade >= turma.qtdAlunos) {
+					if(s.checkHorario(turma)) {
+						ocupacao = new Ocupacao(turma.dia, turma.horario, s, turma);
+						s.ocupacao.add(ocupacao);
+						turma.ocupacao.add(ocupacao);
+						salaEncontrada = true;
+						break;
+					}
+				}
+			}
+			if(salaEncontrada) {
+				break;
+			}
+		}
 	}
 
 	public ArrayList<Predio> getPredios() {

@@ -7,6 +7,25 @@ public class Ocupacao {
 	private Sala sala;
 	private Turma turma;
 	
+	public Ocupacao(int dia, int hora) {
+		this.dia = dia;
+		this.hora = hora;
+	}
+	
+	public Ocupacao(int dia, int hora, Sala sala, Turma turma) {
+		this.dia = dia;
+		this.hora = hora;
+		this.sala = sala;
+		this.turma = turma;
+	}
+	
+	public void destroiSala() {
+		this.sala = null;
+	}
+	public void destroiTurma() {
+		this.turma = null;
+	}
+	
 	//Get e Set
 	
 	public int getDia() {

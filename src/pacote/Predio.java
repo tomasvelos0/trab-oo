@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Predio {
 	String nome;
-	ArrayList<Sala> salas;
+	ArrayList<Sala> salas = new ArrayList<Sala>();
 
 	
 	public Predio(String nome) {
