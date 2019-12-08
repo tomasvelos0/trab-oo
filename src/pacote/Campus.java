@@ -95,8 +95,27 @@ public class Campus {
 		
 	}
 	
+	/*Percorre todas as salas em busca de horario e capacidade compativeis com
+	 * a turma. Entao aloca uma ocupacao conectando sala e turma.*/
 	void allocateTurma(Turma turma) {
-		
+		Ocupacao ocupacao;
+		boolean salaEncontrada = false;
+		for (Predio p : predios) {
+			for(Sala s : p.salas) {
+				if (s.capacidade >= turma.qtdAlunos) {
+					if(s.checkHorario(turma)) {
+						ocupacao = new Ocupacao(turma.dia, turma.horario, s, turma);
+						s.ocupacao.add(ocupacao);
+						turma.ocupacao.add(ocupacao);
+						salaEncontrada = true;
+						break;
+					}
+				}
+			}
+			if(salaEncontrada) {
+				break;
+			}
+		}
 	}
 
 	public ArrayList<Predio> getPredios() {

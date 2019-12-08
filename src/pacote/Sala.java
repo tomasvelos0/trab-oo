@@ -16,9 +16,21 @@ public class Sala {
 		this.nome = nome;
 		this.capacidade = capacidade;
 	}
-
+	
+	//Caso o horario esteja disponivel na sala, retorna true.
 	boolean checkHorario(Turma turma){
-		return true;
+		boolean horario_incompativel = false;
+		for (Ocupacao o : ocupacao) {
+			if(o.getDia() == turma.dia && o.getHora() == turma.horario) {
+				horario_incompativel = true;
+				break;
+			}
+		}
+		if(horario_incompativel) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setNome(String newNome) {
