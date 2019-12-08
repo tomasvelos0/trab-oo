@@ -17,6 +17,12 @@ public class Sala {
 		this.capacidade = capacidade;
 	}
 	
+	public Sala(String nome, int capacidade, String tipo_aula) {
+		this.nome = nome;
+		this.capacidade = capacidade;
+		this.tipo_aula = tipo_aula;
+	}
+	
 	//Caso o horario esteja disponivel na sala, retorna true.
 	boolean checkHorario(Turma turma){
 		boolean horario_incompativel = false;
