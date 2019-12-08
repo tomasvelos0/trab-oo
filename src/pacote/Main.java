@@ -17,6 +17,7 @@ public class Main {
 		Matriculado matriculado;
 		Turma turma;
 		Sala sala;
+
 		int menu = 0;
 		if (r==2) {
 			System.out.println("Qual o nome da universidade? ");
