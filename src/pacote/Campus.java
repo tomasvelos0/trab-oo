@@ -27,7 +27,7 @@ public class Campus {
 	int getIDPredioStr(String nome) {
 		for(int i = 0; i<predios.size();i++) {
 			Predio p = predios.get(i);
-			if(p.nome == nome)
+			if(p.nome.equals(nome))
 				return i;
 		}
 		return -1;
@@ -50,7 +50,7 @@ public class Campus {
 	int getIDDisciplinaStr(String nome) {
 		for(int i = 0; i<disciplinas.size();i++) {
 			Disciplina d = disciplinas.get(i);
-			if(d.nome == nome)
+			if(d.nome.equals(nome))
 				return i;
 		}
 		return -1;

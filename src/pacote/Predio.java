@@ -32,7 +32,7 @@ public class Predio {
 	int getIDSalaStr(String nome) {
 		for(int i = 0; i<salas.size();i++) {
 			Sala s = salas.get(i);
-			if(s.nome == nome)
+			if(s.nome.equals(nome))
 				return i;
 		}
 		return -1;

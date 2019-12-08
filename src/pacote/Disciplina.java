@@ -36,7 +36,7 @@ public class Disciplina {
 	int getIDTurmaStr(String nome) {
 		for(int i = 0; i<turmas.size();i++) {
 			Turma t = turmas.get(i);
-			if(t.nome == nome)
+			if(t.nome.equals(nome))
 				return i;
 		}
 		return -1;
