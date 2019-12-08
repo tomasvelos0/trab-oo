@@ -41,4 +41,12 @@ public class Predio {
 	public void setNome(String newNome) {
 		this.nome = newNome;
 	}
+	
+	void infPredio() {
+		for(int i = 0; i<salas.size(); i++) {
+			System.out.println("			Salas["+ i +"]: " + salas.get(i).nome);
+			
+		}
+	}
+	
 }

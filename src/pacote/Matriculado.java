@@ -10,6 +10,10 @@ public class Matriculado {
 
 	//Get e Set
 
+	public boolean isProfessor(){
+		return false;
+	}
+	
 	public void setNome(String newNome) {
 		this.nome = newNome;
 	}

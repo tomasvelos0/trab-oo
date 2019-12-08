@@ -12,6 +12,10 @@ public class Professor extends Matriculado {
 	public boolean professor() {
 		return true;
 	}
+
+	public boolean isProfessor(){
+		return true;
+	}
 	
 	//Get e Set
 	

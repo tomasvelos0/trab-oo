@@ -11,7 +11,7 @@ public class Disciplina {
 		this.credito = credito;
 	}
 
-	void addTurma() {
+	void addTurma(String nome) {
 		turmas.add(new Turma(nome));
 	}
 	
@@ -49,4 +49,12 @@ public class Disciplina {
 	public void setCredito(int newCredito) {
 		this.credito = newCredito;		
 	}
+	
+	void infDis() {
+		for(int i = 0; i<turmas.size(); i++) {
+			System.out.println("			Salas["+ i +"]: " + turmas.get(i).nome);
+			
+		}
+	}
+	
 }

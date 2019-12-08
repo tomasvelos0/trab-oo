@@ -135,5 +135,15 @@ public class Campus {
 		this.nome = newNome;
 	}
 	
+	void infCampus() {
+		for(int i = 0; i<predios.size(); i++) {
+			System.out.println("		Prédio["+ i +"]: " + predios.get(i).nome);
+			predios.get(i).infPredio();
+		}
+		for(int i = 0; i<disciplinas.size(); i++) {
+			System.out.println("		Disciplinas["+ i +"]: " + disciplinas.get(i).nome + " | créditos: " + disciplinas.get(i).credito);
+			disciplinas.get(i).infDis();
+		}
+	}
 
 }
