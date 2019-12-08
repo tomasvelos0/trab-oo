@@ -90,9 +90,14 @@ public class Campus {
 		}
 		
 	}
-	
+	/* - Eric: fiz assim mas não tenho certeza se é esse o funcionamento 
+	 * desse método, se alguém puder alterar caso nao seja */
 	void allocateTurmas() {
-		
+		for (Disciplina d : disciplinas) {
+			for (Turma t : d.turmas) {
+				this.allocateTurma(t);
+			}
+		}
 	}
 	
 	/*Percorre todas as salas em busca de horario e capacidade compativeis com
