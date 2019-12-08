@@ -14,6 +14,7 @@ public class Main {
 		Campus campus;
 		Predio predio;
 		Disciplina disciplina;
+		Matriculado matriculado;
 		int menu = 0;
 		if (r==2) {
 			System.out.println("Qual o nome da universidade? ");
@@ -90,61 +91,116 @@ public class Main {
 		} else {
 			uni = new Universidade("UnB");
 		}
-		
-		
-		while (menu!=11) {
-			System.out.println("\n Informe o número para o que deseja realizar: \n\n");
-			System.out.println("(1) Adicionar novo campus");
-			System.out.println("(2) Remover Campus");
-			System.out.println("(3) Editar Campus");
-			System.out.println("(4) Gerar id do Campus");
-			System.out.println("(5) Adicionar ALunos");
+
+		while(true) {
+			System.out.println("\n\nInforme o número da operação que deseja realizar: \n");
+			System.out.println("(1) Mapa da universidade: ");
+			System.out.println("(2) Adicionar novo campus");
+			System.out.println("(3) Remover Campus");
+			System.out.println("(4) Editar Campus");
+			System.out.println("(5) Adicionar Alunos");
 			System.out.println("(6) Adicionar Professor");
-			System.out.println("(7) Gerar id Alunos");
-			System.out.println("(8) Gerar id Professor");
-			System.out.println("(9) Editar staff");
-			System.out.println("(10) Informações da universidade: ");
-			System.out.println("(11) Para sair.");
+			System.out.println("(7) Editar matriculado");
+			System.out.println("(8) Remover matriculado");
+			System.out.println("(100) Para sair.");
 			menu = in.nextInt();
-			if(menu==1) {
-				System.out.println("Selecionado: (1) Adicionar novo campus");
-			}
-			else if(menu==2) {
-				System.out.println("Selecionado: (2) Remover Campus");
-			}
-			else if(menu==3) {
-				System.out.println("Selecionado: (3) Editar Campus");
-			}
-			else if(menu==4) {
-				System.out.println("Selecionado: (3) Editar Campus");
-			}
-			else if(menu==5) {
-				System.out.println("Selecionado: (5) Adicionar Alunos");
-			}
-			else if(menu==6) {
-				System.out.println("Selecionado: (6) Adicionar Professor");
-			}
-			else if(menu==7) {
-				System.out.println("Selecionado: (7) Gerar id Alunos");
-			}
-			else if(menu==8) {
-				System.out.println("Selecionado: (8) Gerar id Professor");
-			}
-			else if(menu==9) {
-				System.out.println("Selecionado: (9) Editar staff");
-			}
-			else if(menu==10) {
-				System.out.println("Selecionado: (10) Informações da universidade: ");
-				uni.infUniver();
-			}
-			else if(menu==11) {
-				System.out.println("Programa Terminado!");
-				System.exit(1);
-			} else {
-				System.out.println("Número invalido!");
-			}
 			
+			switch(menu) {
+				case 1:
+					System.out.println("Selecionado: (1) Mapa da universidade: ");
+					uni.infUniver();
+					break;
+					
+				case 2:
+					System.out.println("Selecionado: (2) Adicionar novo campus");
+					System.out.println("Digite o nome do novo campus");
+					in.nextLine();
+					String temp = in.nextLine();
+					uni.addCampus(temp);
+					break;
+					
+				case 3:
+					System.out.println("Selecionado: (3) Remover Campus");
+					System.out.println("Digite o nome do Campus que deseja remover.");
+					in.nextLine();
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) 
+						uni.campus.remove(uni.getIDCampusStr(temp));
+					else 
+						System.out.println("Campus não encontrado!");
+					break;
+					
+				case 4:
+					System.out.println("Selecionado: (4) Editar Campus");
+					System.out.println("Digite o nome do Campus que deseja Editar.");
+					in.nextLine();
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						System.out.println("Digite o novo nome do Campus.");
+						temp = in.nextLine();
+						campus.setNome(temp);
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 5:
+					System.out.println("Selecionado: (5) Adicionar Alunos");
+					in.nextLine();
+					System.out.println("Digite o nome do aluno.");
+					temp = in.nextLine();
+					System.out.println("Digite a matrícula do aluno");
+					String temp2 = in.nextLine();
+					uni.addAluno(temp, temp2);
+					break;
+				
+				case 6:
+					System.out.println("Selecionado: (6) Adicionar professor");
+					in.nextLine();
+					System.out.println("Digite o nome do professor.");
+					temp = in.nextLine();
+					System.out.println("Digite a matrícula do professor");
+					temp2 = in.nextLine();
+					uni.addProfessor(temp, temp2);
+					break;
+				
+				case 7:
+					System.out.println("Selecionado: (7) Editar matriculado");
+					in.nextLine();
+					System.out.println("Digite a matrícula para ser pesquisada.");
+					temp = in.nextLine();
+					if(uni.getIDMatriculadoStr(temp)>-1) {
+						matriculado = uni.matriculado.get(uni.getIDMatriculadoStr(temp));
+						if(matriculado.isProfessor()) 
+							System.out.println(matriculado.nome + "|Professor|" + matriculado.matricula);
+						else
+							System.out.println(matriculado.nome + "|Aluno|" + matriculado.matricula);
+						System.out.println("Digite a nova matrícula.");
+						temp = in.nextLine();
+						matriculado.setMatricula(temp);
+					} else {
+						System.out.println("Matricula não encontrada.");
+					}
+					break;
+
+				case 8:
+					System.out.println("Selecionado: (8) Remover matriculado");
+					in.nextLine();
+					System.out.println("Digite a matrícula para ser pesquisada.");
+					temp = in.nextLine();
+					if(uni.getIDMatriculadoStr(temp)>-1) 
+						uni.matriculado.remove(uni.getIDMatriculadoStr(temp));
+					else 
+						System.out.println("Matricula não encontrada.");
+					break;
+					
+				case 100:
+					System.out.println("Programa Terminado!");
+					System.exit(1);
+					break;
+				
+			}
 		}
-		in.close();
 	}
 }

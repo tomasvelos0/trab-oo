@@ -28,7 +28,7 @@ public class Universidade {
 	int getIDCampusStr(String nome) {
 		for(int i = 0; i<campus.size();i++) {
 			Campus c = campus.get(i);
-			if(c.nome == nome)
+			if(c.nome.equalsIgnoreCase(nome))
 				return i;
 		}
 		return -1;
@@ -59,7 +59,7 @@ public class Universidade {
 		// melhor por como matricula, pois pde ter dois nomes igual
 		for(int i = 0; i<matriculado.size();i++) {
 			Matriculado m = matriculado.get(i);
-			if(m.nome == matricula)
+			if(m.matricula.equalsIgnoreCase(matricula))
 				return i;
 		}
 		return -1;
@@ -70,9 +70,9 @@ public class Universidade {
 		System.out.println(this.nome + ":");
 		for(int i = 0; i<matriculado.size(); i++) {
 			if(matriculado.get(i).isProfessor()) 
-				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Professor");
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Professor|" + matriculado.get(i).matricula);
 			else
-				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Aluno");
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Aluno|" + matriculado.get(i).matricula);
 		}
 		for(int i = 0; i<campus.size(); i++) {
 			System.out.println("	Campus["+ i +"]: " + campus.get(i).nome);
