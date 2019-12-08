@@ -106,6 +106,9 @@ public class Main {
 			System.out.println("(9)  Adicionar novo prédio");
 			System.out.println("(10) Remover prédio");
 			System.out.println("(11) Editar prédio");
+			System.out.println("(12) Adicionar nova disciplina");
+			System.out.println("(13) Remover disciplina");
+			System.out.println("(14) Editar disciplina");
 			System.out.println("(99) Para sair.");
 			menu = in.nextInt();
 			
@@ -244,7 +247,65 @@ public class Main {
 							temp = in.nextLine();
 							predio.setNome(temp);
 						} else {
-							System.out.println("Prédio não encontrado");
+							System.out.println("Prédio não encontrado!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+
+				case 12:
+					System.out.println("Selecionado: (12) Adicionar disciplina");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual se deseja inserir uma disciplina.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina a ser adicionada.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						System.out.println("Digite a quantidade de créditos da disciplina.");
+						int temp3 = in.nextInt();
+						campus.addDisciplina(temp, temp3);
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+
+				case 13:
+					System.out.println("Selecionado: (13) Remover disciplina");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual se deseja remover uma disciplina.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina a ser removida.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						campus.disciplinas.remove(campus.getIDDisciplinaStr(temp));
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 14:
+					System.out.println("Selecionado: (14) Editar disciplina");
+					in.nextLine();
+					System.out.println("Digite o campus ao qual a disciplina pertence.");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome da disciplina a ser editada.");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDDisciplinaStr(temp)>-1) {
+							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
+							System.out.println(disciplina.nome + " | créditos: " + disciplina.credito);
+							System.out.println("Digite o novo nome da disciplina.");
+							temp = in.nextLine();
+							disciplina.setNome(temp);
+							System.out.println("Digite a nova quantidade de créditos da disciplina.");
+							int temp3 = in.nextInt();
+							disciplina.setCredito(temp3);
+						} else {
+							System.out.println("Disciplina não encontrada!");
 						}
 					} else {
 						System.out.println("Campus não encontrado!");
