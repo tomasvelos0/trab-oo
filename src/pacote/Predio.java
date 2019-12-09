@@ -21,44 +21,16 @@ public class Predio {
 		salas.add(new Sala(nome,capacidade));
 	}
 	
-	void addSala(String nome, int capacidade, String tipo_aula) {
-		salas.add(new Sala(nome, capacidade, tipo_aula));
+	void addSala(String nome, int capacidade, String tipo_aula, Predio predio) {
+		salas.add(new Sala(nome, capacidade, tipo_aula, this));
 		
 	}
 	
-	void cadastrarSala() {
-		boolean dados_completos = false;
-		String nome = ""; 
-		String tipo_aula = "";
-		int capacidade = 0;
-		
-		while(dados_completos == false) {
-			try {
-				Scanner input = new Scanner(System.in);
-				System.out.println("Para cadastrar uma nova sala informe:");
-				
-				System.out.println("1 - O nome:");
-				nome = input.nextLine();
-				
-				System.out.println("2 - A capacidade:");
-				capacidade = input.nextInt();
-				input.nextLine();
-				System.out.println("3 - O tipo de aula:");
-				tipo_aula = input.nextLine();
-				
-				if (tipo_aula.length() == 0) {
-					throw new TipoDeAulaNaoAtribuidoException();
-				} else {
-					dados_completos = true;
-					break;
-				}
-				
-			} catch (TipoDeAulaNaoAtribuidoException e) {
-				System.out.println(e.getInfo());
-			}
-		}
-		if(dados_completos) {
-			this.addSala(nome, capacidade, tipo_aula);
+	void cadastrarSala(String nome, String tipo_aula, int capacidade, Predio predio) throws TipoDeAulaNaoAtribuidoException {
+		if (tipo_aula.length() == 0) {
+			throw new TipoDeAulaNaoAtribuidoException();
+		} else {
+			predio.addSala(nome, capacidade, tipo_aula, predio);
 			System.out.println("Sala cadastrada com sucesso!"); 
 		}
 	}

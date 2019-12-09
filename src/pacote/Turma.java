@@ -8,15 +8,15 @@ public class Turma {
 	int horario;
 	int dia;
 	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
-	String professor;
-	String disciplina;
+	Matriculado professor;
+	Disciplina disciplina;
 	
 	
 	public Turma(String nome) {
 		this.nome = nome;
 	}
 	
-	public Turma(String nome, int qtdAlunos, int horario, int dia, String professor, String disciplina) {
+	public Turma(String nome, int qtdAlunos, int horario, int dia, Matriculado professor, Disciplina disciplina) {
 		this.nome = nome;
 		this.qtdAlunos = qtdAlunos;
 		this.horario = horario;
