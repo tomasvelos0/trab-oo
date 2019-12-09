@@ -1,18 +1,58 @@
 package pacote;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import exception.DisciplinaNaoInformadaException;
+import exception.ProfessorNaoAtribuidoException;
 
 public class Campus {
 	String nome;
+	Universidade uni;
 	ArrayList<Predio> predios = new ArrayList<Predio>();
 	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
-	public Campus(String nome) {
+	public Campus(String nome, Universidade uni) {
 		this.nome = nome;
+		this.uni = uni;
 	}
 
 	void addPredio(String nome) {
 		predios.add(new Predio(nome));
+	}
+	
+	void cadastrarTurma(String nome, int qtdAlunos, int horario, int dia, String professor, String dis) throws ProfessorNaoAtribuidoException , DisciplinaNaoInformadaException {
+		
+		if (professor.length() == 0) {
+			throw new ProfessorNaoAtribuidoException();
+		
+		} else if(dis.length() == 0) {
+			throw new DisciplinaNaoInformadaException();
+		
+		} else {
+			Matriculado prof;
+			Disciplina disciplina;
+			int index = this.uni.getIDMatriculadoStr(professor);
+			if(index > -1) {
+				prof = this.uni.matriculado.get(index);
+				if(prof.isProfessor()) {
+					index = this.getIDDisciplinaStr(dis);
+					if (index > -1) {
+						disciplina = this.disciplinas.get(index);
+						disciplina.addTurma(nome, qtdAlunos, horario, dia, prof, disciplina);
+						System.out.println("Turma cadastrada com sucesso!");
+
+					} else {
+						System.out.println("Disciplina não encontrada.");
+					}
+				} else {
+					System.out.println("A matricula não corresponde a um professor.");
+				}
+			} else {
+				System.out.println("Professor não encontrado.");
+			}
+			
+		}
 	}
 	
 	void removePredio(int id) {
@@ -34,7 +74,7 @@ public class Campus {
 	}
 	
 	void addDisciplina(String nome, int credito) {
-		disciplinas.add(new Disciplina(nome,credito));
+		disciplinas.add(new Disciplina(nome,credito, this));
 	}
 	
 	void removeDisciplina(int id) {

@@ -8,7 +8,7 @@ public class Universidade {
 	ArrayList<Matriculado> matriculado = new ArrayList<Matriculado>();
 	
 	void addCampus(String nome) {
-		campus.add(new Campus(nome));
+		campus.add(new Campus(nome, this));
 	}
 	
 	public Universidade(String nome) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Sala {
 	String nome;
 	int capacidade;
+	Predio predio;
 	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
 	//Tipo de aula que ocorrera na sala, caso nao informado lança exceção
 	private String tipo_aula; 
@@ -17,10 +18,11 @@ public class Sala {
 		this.capacidade = capacidade;
 	}
 	
-	public Sala(String nome, int capacidade, String tipo_aula) {
+	public Sala(String nome, int capacidade, String tipo_aula, Predio predio) {
 		this.nome = nome;
 		this.capacidade = capacidade;
 		this.tipo_aula = tipo_aula;
+		this.predio = predio;
 	}
 	
 	//Caso o horario esteja disponivel na sala, retorna true.

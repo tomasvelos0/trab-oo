@@ -121,6 +121,8 @@ public class Main {
 			System.out.println("(18) Adicionar nova sala");
 			System.out.println("(19) Remover sala");
 			System.out.println("(20) Editar sala");
+			System.out.println("(21) Cadastrar Sala");
+			System.out.println("(22) Cadastrar Turma");
 			System.out.println("(99) Para sair.");
 			menu = in.nextInt();
 			
@@ -483,6 +485,98 @@ public class Main {
 							}
 						} else {
 							System.out.println("Prédio não encontrado!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+				
+				case 21:
+					in.nextLine();
+					System.out.println("Selecionado: (21) Cadastrar Sala");
+					System.out.println("Digite o campus ao qual o prédio da sala que será cadastrada pertence:");
+					
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						System.out.println("Digite o nome do prédio ao qual a sala que será cadastrada pertence:");
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						temp = in.nextLine();
+						if(campus.getIDPredioStr(temp)>-1) {
+							predio = campus.predios.get(campus.getIDPredioStr(temp));
+							
+							String nome = ""; 
+							String tipo_aula = "";
+							int capacidade = 0;
+							
+							System.out.println("Para cadastrar uma nova sala informe:");
+							
+							System.out.println("1 - O nome:");
+							nome = in.nextLine();
+							
+							System.out.println("2 - A capacidade:");
+							capacidade = in.nextInt();
+							in.nextLine();
+							
+							System.out.println("3 - O tipo de aula:");
+							tipo_aula = in.nextLine();
+							
+							try {
+								predio.cadastrarSala(nome, tipo_aula, capacidade, predio);
+							} catch (TipoDeAulaNaoAtribuidoException e) {
+								System.out.println(e.getInfo());
+							}
+							
+						} else {
+							System.out.println("Prédio não encontrado!");
+						}
+					} else {
+						System.out.println("Campus não encontrado!");
+					}
+					break;
+					
+				case 22:
+					in.nextLine();
+					System.out.println("Selecionado: (22) Cadastrar Turma");
+					System.out.println("Digite o nome do Campus da turma que será cadastrada:");
+					temp = in.nextLine();
+					if(uni.getIDCampusStr(temp)>-1) {
+						campus = uni.campus.get(uni.getIDCampusStr(temp));
+						
+						String nome = "";
+						int qtdAlunos = 0;
+						int horario = 0;
+						int dia = 0;
+						String professor = "";
+						String dis = "";
+						//System.out.println("Selecionado: (7) Editar matriculado");
+						in.nextLine();
+						System.out.println("Para cadastrar uma nova turma, informe:");
+						
+						System.out.println("1 - O nome:");
+						nome = in.nextLine();
+						
+						System.out.println("2 - A quantidade de alunos:");
+						qtdAlunos = in.nextInt();
+						
+						System.out.println("3 - O horario:");
+						horario = in.nextInt();
+						
+						System.out.println("4 - O dia:");
+						dia = in.nextInt();
+						in.nextLine();
+						
+						System.out.println("5 - A matricula do professor:");
+						professor = in.nextLine();
+						
+						System.out.println("6 - A disciplina:");
+						dis = in.nextLine();
+						try {
+							campus.cadastrarTurma(nome, qtdAlunos, horario, dia, professor, dis);
+						} catch (ProfessorNaoAtribuidoException e) {
+							System.out.println(e.getInfo());
+							
+						} catch (DisciplinaNaoInformadaException e) {
+							System.out.println(e.getInfo());
 						}
 					} else {
 						System.out.println("Campus não encontrado!");
