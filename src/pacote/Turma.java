@@ -7,13 +7,47 @@ public class Turma {
 	int qtdAlunos;
 	int horario;
 	int dia;
-	ArrayList<Ocupacao> ocupacao;
+	ArrayList<Ocupacao> ocupacao = new ArrayList<Ocupacao>();
+	Matriculado professor;
+	Disciplina disciplina;
+	
 	
 	public Turma(String nome) {
 		this.nome = nome;
 	}
+	
+	public Turma(String nome, int qtdAlunos, int horario, int dia, Matriculado professor, Disciplina disciplina) {
+		this.nome = nome;
+		this.qtdAlunos = qtdAlunos;
+		this.horario = horario;
+		this.dia = dia;
+		this.professor = professor;
+		this.disciplina = disciplina;
+	}
 
 	void deallocate(Sala sala) {
+		//Desvinculando as ocupacoes nas salas 
+		for(Ocupacao o : sala.ocupacao) {
+			if(o.getTurma() == this) {
+				sala.ocupacao.remove(o);
+			}
+		}
+		
+		
+		//removendo as salas das ocupacoes
+		for(Ocupacao o : this.ocupacao) {
+			if(o.getSala() == sala) {
+				o.setSala(null);
+			}
+		}
+	}
+	
+	void deallocateAll() {
+		//Desvinculando as ocupacoes de todas as salas
+		for(int i=0; i<this.ocupacao.size(); i++) {
+			this.ocupacao.remove(i);
+			ocupacao.get(i).setSala(null);
+		}
 		
 	}
 
@@ -32,4 +66,11 @@ public class Turma {
 	public void setDia(int newDia) {
 		this.dia = newDia;
 	}
+	
+	public void infOcup() {
+		for(int i = 0; i<ocupacao.size(); i++) {
+			System.out.println("			Ocupadas por ["+ i +"]: " + ocupacao.get(i).getDia() + " e na hora " + ocupacao.get(i).getHora());
+		}
+	}
+
 }

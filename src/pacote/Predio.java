@@ -1,10 +1,12 @@
 package pacote;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import exception.*;
 
 public class Predio {
 	String nome;
-	ArrayList<Sala> salas;
+	ArrayList<Sala> salas = new ArrayList<Sala>();
 
 	
 	public Predio(String nome) {
@@ -17,6 +19,20 @@ public class Predio {
 	
 	void addSala(String nome, int capacidade) {
 		salas.add(new Sala(nome,capacidade));
+	}
+	
+	void addSala(String nome, int capacidade, String tipo_aula, Predio predio) {
+		salas.add(new Sala(nome, capacidade, tipo_aula, this));
+		
+	}
+	
+	void cadastrarSala(String nome, String tipo_aula, int capacidade, Predio predio) throws TipoDeAulaNaoAtribuidoException {
+		if (tipo_aula.length() == 0) {
+			throw new TipoDeAulaNaoAtribuidoException();
+		} else {
+			predio.addSala(nome, capacidade, tipo_aula, predio);
+			System.out.println("Sala cadastrada com sucesso!"); 
+		}
 	}
 
 	void removeSala(int id) {
@@ -32,7 +48,7 @@ public class Predio {
 	int getIDSalaStr(String nome) {
 		for(int i = 0; i<salas.size();i++) {
 			Sala s = salas.get(i);
-			if(s.nome == nome)
+			if(s.nome.equals(nome))
 				return i;
 		}
 		return -1;
@@ -41,4 +57,11 @@ public class Predio {
 	public void setNome(String newNome) {
 		this.nome = newNome;
 	}
+	
+	void infPredio() {
+		for(int i = 0; i<salas.size(); i++) {
+			System.out.println("			Salas["+ i +"]: " + salas.get(i).nome);
+		}
+	}
+	
 }

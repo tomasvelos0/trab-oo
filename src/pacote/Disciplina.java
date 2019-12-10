@@ -1,19 +1,29 @@
 package pacote;
 import java.util.ArrayList;
+import java.util.Scanner;
+import exception.*;
 
 public class Disciplina {
 	String nome;
+	Campus campus;
 	int credito;
-	ArrayList<Turma> turmas;
+	ArrayList<Turma> turmas = new ArrayList<Turma>();
 	
-	public Disciplina(String nome,int credito) {
+	public Disciplina(String nome,int credito, Campus campus) {
 		this.nome = nome;
 		this.credito = credito;
+		this.campus = campus;
 	}
 
-	void addTurma() {
+	void addTurma(String nome) {
 		turmas.add(new Turma(nome));
 	}
+	
+	void addTurma(String nome, int qtdAlunos, int horario, int dia, Matriculado professor, Disciplina disciplina) {
+		turmas.add(new Turma(nome, qtdAlunos, horario, dia, professor, disciplina));
+	}
+	
+	
 	
 	void removeTurma(int id) {
 		turmas.remove(id);
@@ -36,7 +46,7 @@ public class Disciplina {
 	int getIDTurmaStr(String nome) {
 		for(int i = 0; i<turmas.size();i++) {
 			Turma t = turmas.get(i);
-			if(t.nome == nome)
+			if(t.nome.equals(nome))
 				return i;
 		}
 		return -1;
@@ -49,4 +59,12 @@ public class Disciplina {
 	public void setCredito(int newCredito) {
 		this.credito = newCredito;		
 	}
+	
+	void infDis() {
+		for(int i = 0; i<turmas.size(); i++) {
+			System.out.println("			Salas["+ i +"]: " + turmas.get(i).nome);
+			//turmas.get(i).infOcup();
+		}
+	}
+	
 }

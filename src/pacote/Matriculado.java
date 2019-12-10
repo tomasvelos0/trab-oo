@@ -8,11 +8,12 @@ public class Matriculado {
 	String categoria;
 	int idade;
 
-	
-	
-	/*
-	 * //Get e Set
+	//Get e Set
 
+	public boolean isProfessor(){
+		return false;
+	}
+	
 	public void setNome(String newNome) {
 		this.nome = newNome;
 	}
@@ -60,5 +61,5 @@ public class Matriculado {
 	public String getNome() {
 		return nome;
 	}
-	*/
+	
 }

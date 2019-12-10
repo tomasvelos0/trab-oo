@@ -8,7 +8,7 @@ public class Universidade {
 	ArrayList<Matriculado> matriculado = new ArrayList<Matriculado>();
 	
 	void addCampus(String nome) {
-		campus.add(new Campus(nome));
+		campus.add(new Campus(nome, this));
 	}
 	
 	public Universidade(String nome) {
@@ -28,7 +28,7 @@ public class Universidade {
 	int getIDCampusStr(String nome) {
 		for(int i = 0; i<campus.size();i++) {
 			Campus c = campus.get(i);
-			if(c.nome == nome)
+			if(c.nome.equals(nome))
 				return i;
 		}
 		return -1;
@@ -59,7 +59,7 @@ public class Universidade {
 		// melhor por como matricula, pois pde ter dois nomes igual
 		for(int i = 0; i<matriculado.size();i++) {
 			Matriculado m = matriculado.get(i);
-			if(m.nome == matricula)
+			if(m.matricula.equals(matricula))
 				return i;
 		}
 		return -1;
@@ -67,9 +67,16 @@ public class Universidade {
 	}
 	
 	void infUniver() {
+		System.out.println(this.nome + ":");
+		for(int i = 0; i<matriculado.size(); i++) {
+			if(matriculado.get(i).isProfessor()) 
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Professor|" + matriculado.get(i).matricula);
+			else
+				System.out.println("	Matriculados["+ i +"]: " + matriculado.get(i).nome + "|Aluno|" + matriculado.get(i).matricula);
+		}
 		for(int i = 0; i<campus.size(); i++) {
-			System.out.println("Id: [" + i + "] Campus: " + campus.get(i).nome);
+			System.out.println("	Campus["+ i +"]: " + campus.get(i).nome);
+			campus.get(i).infCampus();
 		}
 	}
-	
 }
