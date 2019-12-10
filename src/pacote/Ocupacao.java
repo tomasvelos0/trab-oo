@@ -2,10 +2,10 @@ package pacote;
 //import java.util.ArrayList;
 
 public class Ocupacao {
-	private int dia;
-	private int hora;
-	private Sala sala;
-	private Turma turma;
+	public int dia;
+	public int hora;
+	public Sala sala;
+	public Turma turma;
 	
 	public Ocupacao(int dia, int hora) {
 		this.dia = dia;

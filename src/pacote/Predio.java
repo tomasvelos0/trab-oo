@@ -1,7 +1,6 @@
 package pacote;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import exception.*;
 
 public class Predio {
@@ -17,8 +16,8 @@ public class Predio {
 		salas.add(new Sala(nome));
 	}
 	
-	void addSala(String nome, int capacidade) {
-		salas.add(new Sala(nome,capacidade));
+	void addSala(String nome, int capacidade, String tipo_aula) {
+		salas.add(new Sala(nome,capacidade, tipo_aula));
 	}
 	
 	void addSala(String nome, int capacidade, String tipo_aula, Predio predio) {
@@ -60,7 +59,8 @@ public class Predio {
 	
 	void infPredio() {
 		for(int i = 0; i<salas.size(); i++) {
-			System.out.println("			Salas["+ i +"]: " + salas.get(i).nome);
+			System.out.println("			Salas["+ i +"]: " + salas.get(i).nome + " | Suporta " + salas.get(i).capacidade + " alunos | Tipo de Aula:" + salas.get(i).getTipo_aula());
+			salas.get(i).infSala();
 		}
 	}
 	

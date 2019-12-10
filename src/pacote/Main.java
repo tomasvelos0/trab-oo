@@ -44,52 +44,57 @@ public class Main {
 			campus = uni.campus.get(uni.getIDCampusStr("FGA"));
 			campus.addPredio("UED");
 			predio = campus.predios.get(campus.getIDPredioStr("UED"));
-			predio.addSala("Lab SS");
-			predio.addSala("Mocap");
-			predio.addSala("Lab NEI");
-			predio.addSala("Lab Eletricidade");
-			predio.addSala("Lab Materiais");
-			predio.addSala("Lab Termo");
-			predio.addSala("Lab LEI");
-			predio.addSala("Lab Física");
-			predio.addSala("Lab Química");
+			predio.addSala("Lab SS",40, "Graduação");
+			predio.addSala("Mocap",40, "Extensão");
+			predio.addSala("Lab NEI",20, "Graduação");
+			predio.addSala("Lab Eletricidade",20, "Graduação");
+			predio.addSala("Lab Materiais",20, "Extensão");
+			predio.addSala("Lab Termo",20, "Extensão");
+			predio.addSala("Lab LEI",20, "Graduação");
+			predio.addSala("Lab Física",20, "Graduação");
+			predio.addSala("Lab Química",20, "Extensão");
 			campus.addPredio("UAC");
 			predio = campus.predios.get(campus.getIDPredioStr("UAC"));
-			predio.addSala("S1");
-			predio.addSala("S2");
-			predio.addSala("S3");
-			predio.addSala("S4");
-			predio.addSala("S5");
-			predio.addSala("S6");
-			predio.addSala("S7");
-			predio.addSala("S8");
-			predio.addSala("S9");
-			predio.addSala("S10");
-			predio.addSala("I1");
-			predio.addSala("I2");
-			predio.addSala("I3");
-			predio.addSala("I4");
-			predio.addSala("I5");
-			predio.addSala("I6");
-			predio.addSala("I7");
-			predio.addSala("I8");
-			predio.addSala("I9");
-			predio.addSala("I10");
-			campus.addDisciplina("Orientação a Objeto", 4);
+			predio.addSala("S1",120, "Graduação");
+			predio.addSala("S2",120, "Graduação");
+			predio.addSala("S3",120, "Graduação");
+			predio.addSala("S4",120, "Graduação");
+			predio.addSala("S5",120, "Extensão");
+			predio.addSala("S6",120, "Extensão");
+			predio.addSala("S7",120, "Extensão");
+			predio.addSala("S8",120, "Extensão");
+			predio.addSala("S9",120, "Graduação");
+			predio.addSala("S10",60, "Graduação");
+			predio.addSala("I1",40, "Graduação");
+			predio.addSala("I2",40, "Graduação");
+			predio.addSala("I3",40, "Graduação");
+			predio.addSala("I4",40, "Graduação");
+			predio.addSala("I5",40, "Graduação");
+			predio.addSala("I6",40, "Extensão");
+			predio.addSala("I7",40, "Extensão");
+			predio.addSala("I8",40, "Extensão");
+			predio.addSala("I9",40, "Extensão");
+			predio.addSala("I10",60, "Graduação");
+			predio.addSala("fake",19, "Graduação");
+			campus.addDisciplina("Orientação a Objeto", 4, "Graduação");
 			disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr("Orientação a Objeto"));
-			disciplina.addTurma("A");
-			disciplina.addTurma("B");
-			disciplina.addTurma("C");
-			disciplina.addTurma("D");
-			campus.addDisciplina("Princípios de Comunicação", 6);
+			disciplina.addTurma("A",41,1,4,2,3);
+			disciplina.addTurma("B",41,1,4,2,4);
+			disciplina.addTurma("C",40,1,4,2,4);
+			disciplina.addTurma("D",41,1,4,2,4);
+			campus.addDisciplina("Princípios de Comunicação", 6, "Graduação");
 			disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr("Princípios de Comunicação"));
-			disciplina.addTurma("A");
-			campus.addDisciplina("Cálculo 3", 6);
+			disciplina.addTurma("A",20,4,2,5,3,5,5);
+			disciplina.addTurma("fake",19,4,2,5,3,5,5);
+			campus.addDisciplina("Cálculo 3", 6, "Extensão");
 			disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr("Cálculo 3"));
-			disciplina.addTurma("A");
-			disciplina.addTurma("B");
-			disciplina.addTurma("C");
-			disciplina.addTurma("D");
+			disciplina.addTurma("A",40,4,2,5,3,5,5);
+			disciplina.addTurma("B",120,4,2,5,3,5,5);
+			disciplina.addTurma("C",41,4,2,5,3,5,5);
+			disciplina.addTurma("D",40,4,2,5,3,5,5);
+			disciplina.addTurma("E",121,4,2,5,3,5,5);
+			disciplina.addTurma("F",120,4,2,5,3,5,5);
+			disciplina.addTurma("G",120,4,2,5,3,5,5);
 			uni.infUniver();
 			System.out.println("Populado!");
 			
@@ -115,10 +120,8 @@ public class Main {
 			System.out.println("(12) Adicionar nova disciplina");
 			System.out.println("(13) Remover disciplina");
 			System.out.println("(14) Editar disciplina");
-			System.out.println("(15) Adicionar nova turma");
 			System.out.println("(16) Remover turma");
 			System.out.println("(17) Editar turma");
-			System.out.println("(18) Adicionar nova sala");
 			System.out.println("(19) Remover sala");
 			System.out.println("(20) Editar sala");
 			System.out.println("(21) Cadastrar Sala");
@@ -285,9 +288,11 @@ public class Main {
 						System.out.println("Digite o nome da disciplina a ser adicionada.");
 						campus = uni.campus.get(uni.getIDCampusStr(temp));
 						temp = in.nextLine();
+						System.out.println("Digite o tipo de aula da disciplina.");
+						String tipodeaula = in.nextLine();
 						System.out.println("Digite a quantidade de créditos da disciplina.");
 						int temp3 = in.nextInt();
-						campus.addDisciplina(temp, temp3);
+						campus.addDisciplina(temp, temp3, tipodeaula);
 					} else {
 						System.out.println("Campus não encontrado!");
 					}
@@ -330,28 +335,6 @@ public class Main {
 							System.out.println("Digite a nova quantidade de créditos da disciplina.");
 							int temp3 = in.nextInt();
 							disciplina.setCredito(temp3);
-						} else {
-							System.out.println("Disciplina não encontrada!");
-						}
-					} else {
-						System.out.println("Campus não encontrado!");
-					}
-					break;
-					
-				case 15:
-					System.out.println("Selecionado: (15) Adicionar turma");
-					in.nextLine();
-					System.out.println("Digite o campus ao qual a turma deve ser adicionada.");
-					temp = in.nextLine();
-					if(uni.getIDCampusStr(temp)>-1) {
-						System.out.println("Digite o nome da disciplina ao qual ao qual a turma deve ser adicionada.");
-						campus = uni.campus.get(uni.getIDCampusStr(temp));
-						temp = in.nextLine();
-						if(campus.getIDDisciplinaStr(temp)>-1) {
-							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
-							System.out.println("Digite o nome da turma a ser adicionada");
-							temp = in.nextLine();
-							disciplina.addTurma(temp);
 						} else {
 							System.out.println("Disciplina não encontrada!");
 						}
@@ -409,29 +392,6 @@ public class Main {
 							}
 						} else {
 							System.out.println("Disciplina não encontrada!");
-						}
-					} else {
-						System.out.println("Campus não encontrado!");
-					}
-					break;
-					
-				case 18:
-					System.out.println("Selecionado: (18) Adicionar nova sala");
-					in.nextLine();
-					System.out.println("Digite o campus ao qual a sala deve ser adicionada a sala.");
-					temp = in.nextLine();
-					if(uni.getIDCampusStr(temp)>-1) {
-						campus = uni.campus.get(uni.getIDCampusStr(temp));
-						System.out.println("Digite o nome do prédio ao qual deve ser editadoadicionado a sala.");
-						campus = uni.campus.get(uni.getIDCampusStr(temp));
-						temp = in.nextLine();
-						if(campus.getIDPredioStr(temp)>-1) {
-							predio = campus.predios.get(campus.getIDPredioStr(temp));
-							System.out.println("Digite o nome da sala a ser adicionada.");
-							temp = in.nextLine();
-							predio.addSala(temp);
-						} else {
-							System.out.println("Prédio não encontrado!");
 						}
 					} else {
 						System.out.println("Campus não encontrado!");
@@ -602,8 +562,10 @@ public class Main {
 							temp = in.nextLine();
 							if(disciplina.getIDTurmaStr(temp)>-1) {
 								turma = disciplina.turmas.get(disciplina.getIDTurmaStr(temp));
-								campus.allocateTurma(turma);
-								System.out.println("Turma " + temp + " alocada com sucesso. ");
+								if(campus.allocateTurma(turma))
+									System.out.println("Turma " + temp + " alocada com sucesso. ");
+								else
+									System.out.println("Nenhuma sala com esta capacidade disponível no campus!");
 							} else {
 								System.out.println("Turma não encontrada!");
 							}
@@ -645,9 +607,7 @@ public class Main {
 							temp = in.nextLine();
 							if(disciplina.getIDTurmaStr(temp)>-1) {
 								turma = disciplina.turmas.get(disciplina.getIDTurmaStr(temp));
-								for (int i = 0; i < turma.ocupacao.size(); i++) {
-									turma.deallocate(turma.ocupacao.get(i).getSala());
-								}
+								turma.deallocate();
 								System.out.println("Turma " + temp + " desalocada com sucesso. ");
 							} else {
 								System.out.println("Turma não encontrada!");
@@ -663,26 +623,12 @@ public class Main {
 				case 26:
 					in.nextLine();
 					System.out.println("Selecionado: (26) desalocar todas as Turma");
-					System.out.println("Digite o campus ao qual a turma que será desalocada pertence.");
+					System.out.println("Digite o campus para desalocar as Turmas.");
 					temp = in.nextLine();
 					if(uni.getIDCampusStr(temp)>-1) {
 						System.out.println("Campus " + temp + " encontrado, digite o nome da disciplina ao qual a turma pertence.");
 						campus = uni.campus.get(uni.getIDCampusStr(temp));
-						temp = in.nextLine();
-						if(campus.getIDDisciplinaStr(temp)>-1) {
-							disciplina = campus.disciplinas.get(campus.getIDDisciplinaStr(temp));
-							System.out.println("Disciplina " + temp + " econtrada. Digite o nome da turma que será desalocada de todas ocupações.");
-							temp = in.nextLine();
-							if(disciplina.getIDTurmaStr(temp)>-1) {
-								turma = disciplina.turmas.get(disciplina.getIDTurmaStr(temp));
-								turma.deallocateAll();
-								System.out.println("Turma " + temp + " desalocada com sucesso. ");
-							} else {
-								System.out.println("Turma não encontrada!");
-							}
-						} else {
-							System.out.println("Disciplina não encontrada!");
-						}
+						campus.dellocateall();
 					} else {
 						System.out.println("Campus não encontrado!");
 					}

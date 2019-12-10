@@ -1,7 +1,8 @@
 package pacote;
 import java.util.ArrayList;
+import java.util.Vector;
 
-public class Sala {
+public class Sala implements Comparable<Sala> {
 	String nome;
 	int capacidade;
 	Predio predio;
@@ -13,9 +14,10 @@ public class Sala {
 		this.nome = nome;
 	}
 	
-	public Sala(String nome, int capacidade) {
+	public Sala(String nome, int capacidade, String tipo_aula) {
 		this.nome = nome;
 		this.capacidade = capacidade;
+		this.tipo_aula = tipo_aula;
 	}
 	
 	public Sala(String nome, int capacidade, String tipo_aula, Predio predio) {
@@ -27,18 +29,14 @@ public class Sala {
 	
 	//Caso o horario esteja disponivel na sala, retorna true.
 	boolean checkHorario(Turma turma){
-		boolean horario_incompativel = false;
-		for (Ocupacao o : ocupacao) {
-			if(o.getDia() == turma.dia && o.getHora() == turma.horario) {
-				horario_incompativel = true;
-				break;
+		for(Horario h : turma.horario) {
+			for(Ocupacao o : ocupacao) {
+				if((o.dia==h.dia)&&(o.hora==h.horario)) {
+					return false;
+				}
 			}
 		}
-		if(horario_incompativel) {
-			return false;
-		} else {
-			return true;
-		}
+		return true;
 	}
 
 	public void setNome(String newNome) {
@@ -57,7 +55,32 @@ public class Sala {
 		this.tipo_aula = tipo_aula;
 	}
 
+	public void infSala() {
+		for(int i = 0; i<ocupacao.size(); i++) {
+			System.out.print("				Ocupacao["+ i +"]: dia:" + ocupacao.get(i).dia + "|horario:" + ocupacao.get(i).hora);
+			ocupacao.get(i).turma.infTurma();
+		}
+	}
+
+	@Override     
+	public int compareTo(Sala sala) {          
+		return (this.getCapacidade() < sala.getCapacidade() ? -1 : 
+			(this.getCapacidade() == sala.getCapacidade() ? 0 : 1));     
+	} 
 	
+	public int getCapacidade() {
+		return capacidade;
+	}
 	
-	
+	public void deallocateTurma(Turma turma) {
+		Vector<Integer> ids = new Vector<>();
+		for(Ocupacao o : ocupacao) {
+			if(o.turma == turma) {
+				ids.add(this.ocupacao.indexOf(o));
+			}
+		}
+		for(int i : ids) {
+			ocupacao.remove(i-ids.indexOf(i));
+		}
+	}
 }
