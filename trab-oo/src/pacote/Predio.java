@@ -17,7 +17,7 @@ public class Predio {
 	}
 	
 	void addSala(String nome, int capacidade, String tipo_aula) {
-		salas.add(new Sala(nome,capacidade, tipo_aula));
+		salas.add(new Sala(nome,capacidade, tipo_aula,this));
 	}
 	
 	void addSala(String nome, int capacidade, String tipo_aula, Predio predio) {
