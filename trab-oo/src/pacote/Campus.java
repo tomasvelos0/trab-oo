@@ -39,7 +39,7 @@ public class Campus {
 					index = this.getIDDisciplinaStr(dis);
 					if (index > -1) {
 						disciplina = this.disciplinas.get(index);
-						disciplina.addTurma(nome, qtdAlunos, horario, dia, prof, disciplina);
+						disciplina.addTurma(nome, qtdAlunos, horario, dia);
 						System.out.println("Turma cadastrada com sucesso!");
 
 					} else {
